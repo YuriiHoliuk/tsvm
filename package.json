@@ -1,0 +1,19 @@
+{
+  "name": "jsvm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsnd --respawn ./index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "ts-node-dev": "^1.1.7",
+    "typescript": "^4.3.4"
+  }
+}
