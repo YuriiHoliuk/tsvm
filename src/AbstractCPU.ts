@@ -7,4 +7,6 @@ export interface AbstractCPU {
   readonly registers: Registers;
 
   step(): void | true;
+
+  run(onStep?: () => void): void;
 }

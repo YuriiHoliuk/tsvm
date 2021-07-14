@@ -1,6 +1,8 @@
-import { InstructionCodes, instructionNamesByCodes } from './Instructions';
+import { InstructionCodes, instructionNamesByCodes } from './instructions';
 import { registerNames } from './registers';
 import { AbstractCPU } from './AbstractCPU';
+import { Memory } from './Memory';
+import { CPU } from './CPU';
 
 const toHex = (size: 2 | 4) => (value?: number) => `0x${value?.toString(16).padStart(size, '0')}`;
 const toHex8 = toHex(2);
@@ -8,7 +10,7 @@ const toHex16 = toHex(4);
 
 export const makeDebug = (cpu: AbstractCPU) => (from = 0x0000, length = 32): void => {
   const instructionAddres = cpu.registers.ip.getUint16(0)
-  const instructionCode = cpu.memory.getUint16(instructionAddres) as InstructionCodes;
+  const instructionCode = cpu.memory.getUint8(instructionAddres) as InstructionCodes;
   const instructionName = instructionNamesByCodes[instructionCode];
   const name = instructionName
     ? `Next instruction: ${instructionName}`
@@ -40,3 +42,12 @@ export const makeDebug = (cpu: AbstractCPU) => (from = 0x0000, length = 32): voi
   console.log(`\nMemory(from: ${toHex16(from)}, to: ${toHex16(from + length)}): `);
   console.log(memoryValue.map(row => row.join(' ')).join('\n'));
 }
+
+export const debugRun = (program: number[]) => {
+  const memory = new Memory(0xffff + 1);
+  const cpu = new CPU(memory);
+
+  memory.load([...program, 0xff]);
+
+  cpu.run(makeDebug(cpu));
+};

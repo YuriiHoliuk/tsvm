@@ -25,4 +25,14 @@ export class Memory implements AbstractMemory {
   setUint16(byteOffset: number, value: number) {
     this.view.setUint16(byteOffset, value)
   }
+
+  load(data: number[], from = 0x0000) {
+    let nextAddress = from;
+
+    for (const byte of data) {
+      this.setUint8(nextAddress, byte);
+
+      nextAddress++;
+    }
+  }
 }
