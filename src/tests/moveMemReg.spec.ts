@@ -16,11 +16,11 @@ describe('MoveMemToReg instruction', () => {
       r1: 0xffff,
     },
   });
-  
+
   testCPU('should move data from memory to the register 2', {
     program: [
       // MoveMemToReg
-      0x01, 
+      0x01,
       // literal
       0x00, 0x13,
       // r2
@@ -31,12 +31,12 @@ describe('MoveMemToReg instruction', () => {
     registers: {
       r2: 0x0013,
     },
-  })
-  
+  });
+
   testCPU('should move data from memory to the register 3', {
     program: [
       // MoveMemToReg
-      0x01, 
+      0x01,
       // literal
       0xab, 0xcd,
       // r3
@@ -48,11 +48,11 @@ describe('MoveMemToReg instruction', () => {
       r3: 0xabcd,
     },
   });
-  
+
   testCPU('should move data from memory to the register 4', {
     program: [
       // MoveMemToReg
-      0x01, 
+      0x01,
       // literal
       0x10, 0x00,
       // r4
@@ -64,11 +64,11 @@ describe('MoveMemToReg instruction', () => {
       r4: 0x1000,
     },
   });
-  
+
   testCPU('should move data from memory to the register ip', {
     program: [
       // MoveMemToReg
-      0x01, 
+      0x01,
       // literal
       0x00, 0x06,
       // ip
@@ -82,12 +82,11 @@ describe('MoveMemToReg instruction', () => {
       ip: 0x0007,
     },
   });
-  
-  
+
   testCPU('should move data from memory to the register acc', {
     program: [
       // MoveMemToReg
-      0x01, 
+      0x01,
       // literal
       0x11, 0x11,
       // r4

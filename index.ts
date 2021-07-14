@@ -1,6 +1,5 @@
 import { debugRun } from './src';
 
-
 const movMemRegProgram = [
   // MoveMemToReg
   0x01,
@@ -8,9 +7,9 @@ const movMemRegProgram = [
   0xff,
   0xff,
   // r1
-  0x03, 
+  0x03,
   // MoveMemToReg
-  0x01, 
+  0x01,
   // literal 0x0013
   0x00,
   0x13,

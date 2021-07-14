@@ -45,7 +45,11 @@ const commonTest = (testFn: typeof it, title: string, params: Params) => testFn(
   }
 });
 
-export const testCPU = (title: string, params: Params) => commonTest(it, title, params);
+export const testCPU = (title: string, params: Params): void => commonTest(it, title, params);
 
 testCPU.only = (title: string, params: Params) => commonTest(it.only, title, params);
-testCPU.debug = (title: string, params: Params) => commonTest(it.only, title, { ...params, isDebugMode: true });
+testCPU.debug = (title: string, params: Params) => commonTest(
+  it.only,
+  title,
+  { ...params, isDebugMode: true },
+);

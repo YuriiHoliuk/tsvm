@@ -8,7 +8,7 @@ export interface RegisterCodesByNames {
   r2: 0x04;
   r3: 0x05;
   r4: 0x06;
-};
+}
 
 export const registerCodesByNames: RegisterCodesByNames = {
   ip: 0x01,
@@ -17,7 +17,7 @@ export const registerCodesByNames: RegisterCodesByNames = {
   r2: 0x04,
   r3: 0x05,
   r4: 0x06,
-}
+};
 
 export type RegisterNamesByCodes = Swap<RegisterCodesByNames>;
 export type RegisterNames = keyof RegisterCodesByNames;
@@ -30,4 +30,3 @@ export const registerCodes: RegisterCodes[] = Object.values(registerCodesByNames
 export type Registers = {
   [key in RegisterNames]: AbstractMemory;
 };
- 

@@ -9,24 +9,24 @@ const toHex8 = toHex(2);
 const toHex16 = toHex(4);
 
 export const makeDebug = (cpu: AbstractCPU) => (from = 0x0000, length = 32): void => {
-  const instructionAddres = cpu.registers.ip.getUint16(0)
+  const instructionAddres = cpu.registers.ip.getUint16(0);
   const instructionCode = cpu.memory.getUint8(instructionAddres) as InstructionCodes;
   const instructionName = instructionNamesByCodes[instructionCode];
   const name = instructionName
     ? `Next instruction: ${instructionName}`
-    : `No instruction`;
+    : 'No instruction';
 
-  console.log(`\n\n${name}(${toHex8(instructionCode)})`)
+  console.log(`\n\n${name}(${toHex8(instructionCode)})`);
 
   console.log('\nRegisters:');
 
-  registerNames.forEach((name) => {
-    console.log(`${name}: ${toHex16(cpu.registers[name].getUint16(0))}`);
+  registerNames.forEach((registerName) => {
+    console.log(`${registerName}: ${toHex16(cpu.registers[registerName].getUint16(0))}`);
   });
 
   const memoryForRead = new DataView(cpu.memory.buffer);
   let lastRow: string[] = [];
-  let memoryValue: string[][] = [lastRow];
+  const memoryValue: string[][] = [lastRow];
 
   for (let i = from; i < length; i += 2) {
     if (lastRow.length === 4) {
@@ -40,10 +40,10 @@ export const makeDebug = (cpu: AbstractCPU) => (from = 0x0000, length = 32): voi
   }
 
   console.log(`\nMemory(from: ${toHex16(from)}, to: ${toHex16(from + length)}): `);
-  console.log(memoryValue.map(row => row.join(' ')).join('\n'));
-}
+  console.log(memoryValue.map((row) => row.join(' ')).join('\n'));
+};
 
-export const debugRun = (program: number[]) => {
+export const debugRun = (program: number[]): void => {
   const memory = new Memory(0xffff + 1);
   const cpu = new CPU(memory);
 

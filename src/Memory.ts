@@ -10,23 +10,23 @@ export class Memory implements AbstractMemory {
     this.view = new DataView(this.buffer);
   }
 
-  getUint8(byteOffset: number) {
+  getUint8(byteOffset: number): number {
     return this.view.getUint8(byteOffset);
   }
 
-  setUint8(byteOffset: number, value: number) {
-    this.view.setUint8(byteOffset, value)
+  setUint8(byteOffset: number, value: number): void {
+    this.view.setUint8(byteOffset, value);
   }
 
-  getUint16(byteOffset: number) {
+  getUint16(byteOffset: number): number {
     return this.view.getUint16(byteOffset);
   }
 
-  setUint16(byteOffset: number, value: number) {
-    this.view.setUint16(byteOffset, value)
+  setUint16(byteOffset: number, value: number): void {
+    this.view.setUint16(byteOffset, value);
   }
 
-  load(data: number[], from = 0x0000) {
+  load(data: number[], from = 0x0000): void {
     let nextAddress = from;
 
     for (const byte of data) {

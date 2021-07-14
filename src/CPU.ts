@@ -1,8 +1,10 @@
 import { Memory } from './Memory';
-import { RegisterCodes, registerNamesByCodes, Registers } from './registers';
+import {
+  RegisterCodes, registerNamesByCodes, Registers, registerNames,
+} from './registers';
 import { AbstractCPU } from './AbstractCPU';
 import { AbstractMemory } from './AbstractMemory';
-import { registerNames } from './registers';
+
 import { instructionCodesByNames } from './instructions';
 
 export class CPU implements AbstractCPU {
@@ -16,7 +18,7 @@ export class CPU implements AbstractCPU {
     }, {} as Registers);
   }
 
-  step() {
+  step(): boolean {
     const nextInstructionAddress = this.registers.ip.getUint16(0);
     this.registers.ip.setUint16(0, nextInstructionAddress + 1);
     const instruction = this.memory.getUint8(nextInstructionAddress);
@@ -35,7 +37,7 @@ export class CPU implements AbstractCPU {
 
         register.setUint16(0, value);
 
-        return;
+        return false;
       }
 
       case instructionCodesByNames.Halt: {
@@ -48,8 +50,8 @@ export class CPU implements AbstractCPU {
     }
   }
 
-  run(onStep?: () => void) {
-    let isDone;
+  run(onStep?: () => void): void {
+    let isDone = false;
 
     if (onStep) {
       onStep();
