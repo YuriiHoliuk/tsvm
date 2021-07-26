@@ -21,6 +21,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': [2, {
       allowHigherOrderFunctions: true,
     }],
+    'no-bitwise': 0,
   },
   settings: {
     'import/resolver': {

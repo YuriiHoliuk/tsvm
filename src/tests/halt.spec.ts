@@ -1,8 +1,9 @@
+import { instructionCodesByNames } from '../instructions';
 import { testCPU } from '../testUtils';
 
 describe('Halt instruction', () => {
   testCPU('should stop on Halt', {
-    program: [0xff],
+    program: [instructionCodesByNames.Halt],
     registers: {
       ip: 0x001,
     },
